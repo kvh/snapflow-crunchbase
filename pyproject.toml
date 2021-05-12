@@ -6,11 +6,9 @@ name = "snapflow-crunchbase"
 version = "0.1.0"
 
 [tool.poetry.dependencies]
-datacopy = {path = "../dcp", develop = true}
-python = "^3.7.4"
-snapflow = {path = "../snapflow", develop = true}
-common-model = { path = "../common-model/python", develop = true }
 cookiecutter = "^1.7.2"
+python = "^3.7.4"
+snapflow = "~0.5.4"
 
 [tool.poetry.dev-dependencies]
 black = "^19.10b0"
@@ -20,6 +18,9 @@ mypy = "^0.770"
 pre-commit = "^2.1.1"
 pytest = "^4.6"
 pytest-cov = "^2.8.1"
+# snapflow = {path = "../snapflow", develop = true}
+# datacopy = {path = "../dcp", develop = true}
+# common-model = { path = "../common-model/python", develop = true }
 
 [tool.black]
 exclude = '''
