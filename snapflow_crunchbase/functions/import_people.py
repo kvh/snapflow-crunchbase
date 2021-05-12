@@ -19,11 +19,8 @@ class ImportCrunchbasePeopleCSVState:
     display_name="Import Crunchbase People",
 )
 def import_people(
-        ctx: DataFunctionContext,
-        user_key: str
+    ctx: DataFunctionContext, user_key: str, use_sample: bool = False,
 ):
     base_import(
-        data_source="people",
-        user_key=user_key,
-        ctx=ctx
+        data_source="people", user_key=user_key, ctx=ctx, use_sample=use_sample,
     )

@@ -19,11 +19,8 @@ class ImportCrunchbaseFundingRoundsCSVState:
     display_name="Import Crunchbase Funding Rounds",
 )
 def import_funding_rounds(
-        ctx: DataFunctionContext,
-        user_key: str
+    ctx: DataFunctionContext, user_key: str, use_sample: bool = False,
 ):
-    return base_import(
-        data_source="funding_rounds",
-        user_key=user_key,
-        ctx=ctx
+    base_import(
+        data_source="funding_rounds", user_key=user_key, ctx=ctx, use_sample=use_sample,
     )
