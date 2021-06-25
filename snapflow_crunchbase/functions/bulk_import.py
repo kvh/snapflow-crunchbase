@@ -19,17 +19,16 @@ from dcp.data_format import CsvFileFormat
 from snapflow import Function, Context, DataBlock, DataFunctionContext, datafunction
 from snapflow.helpers.connectors.connection import HttpApiConnection
 
-BIGCOMMERCE_API_BASE_URL = "https://api.crunchbase.com/bulk/v4/bulk_export.tar.gz"
-CRUNCHBASE_BULK_CSV_URL = "http://static.crunchbase.com/data_crunchbase/bulk_export_sample.tar.gz"
-CRUNCHBASE_CSV_TO_SCHEMA_MAP = {
-    ""
-}
+CRUNCHBASE_API_BASE_URL = "https://api.crunchbase.com/bulk/v4/bulk_export.tar.gz"
+CRUNCHBASE_BULK_CSV_URL = (
+    "http://static.crunchbase.com/data_crunchbase/bulk_export_sample.tar.gz"
+)
+CRUNCHBASE_CSV_TO_SCHEMA_MAP = {""}
 
 
 @dataclass
 class ImportCrunchbaseCSVState:
     latest_imported_at: datetime
-
 
 
 @datafunction(
@@ -39,10 +38,7 @@ class ImportCrunchbaseCSVState:
     display_name="Import Crunchbase data",
     required_storage_classes=["file"],
 )
-def bulk_import(
-        ctx: DataFunctionContext,
-        user_key: str
-):
+def bulk_import(ctx: DataFunctionContext, user_key: str):
     params = {
         "user_key": user_key,
     }
@@ -50,10 +46,7 @@ def bulk_import(
     # while ctx.should_continue():
     # ctx.emit_state_value("latest_imported_at", utcnow())
 
-    resp = HttpApiConnection().get(
-        url=CRUNCHBASE_BULK_CSV_URL,
-        params=params,
-    )
+    resp = HttpApiConnection().get(url=CRUNCHBASE_BULK_CSV_URL, params=params,)
 
     print("------")
     print(resp)
@@ -75,24 +68,24 @@ def bulk_import(
 
 
 # tar.extractall("/Users/rootx/Projects/SnapData/test/")
-    # tar.close()
-    #
-    # raw = open("/Users/rootx/Projects/SnapData/test/organizations.csv", "r")
-    #
-    # dr = csv.DictReader(open("/Users/rootx/Projects/SnapData/test/organizations.csv", "r"))
-    # # print(list(dr))
-    # print("------")
-    # ctx.emit_state_value("imported", True)
-    # ctx.emit(raw, data_format=CsvFileFormat, schema="crunchbase.CrunchbasePerson")
+# tar.close()
+#
+# raw = open("/Users/rootx/Projects/SnapData/test/organizations.csv", "r")
+#
+# dr = csv.DictReader(open("/Users/rootx/Projects/SnapData/test/organizations.csv", "r"))
+# # print(list(dr))
+# print("------")
+# ctx.emit_state_value("imported", True)
+# ctx.emit(raw, data_format=CsvFileFormat, schema="crunchbase.CrunchbasePerson")
 
-    # ctx.emit_state_value("imported", True)
-    # ctx.emit(raw, storage=ctx.execution_context.target_storage, data_format=CsvFileFormat)
-    # # check if there is anything left to process
-    # if resp.status_code == HTTPStatus.NO_CONTENT:
-    #     break
-    #
-    # json_resp = resp.json()
-    #
-    # assert isinstance(json_resp, list)
-    #
-    # yield resp.json()
+# ctx.emit_state_value("imported", True)
+# ctx.emit(raw, storage=ctx.execution_context.target_storage, data_format=CsvFileFormat)
+# # check if there is anything left to process
+# if resp.status_code == HTTPStatus.NO_CONTENT:
+#     break
+#
+# json_resp = resp.json()
+#
+# assert isinstance(json_resp, list)
+#
+# yield resp.json()
