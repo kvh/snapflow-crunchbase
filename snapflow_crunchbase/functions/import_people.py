@@ -21,6 +21,11 @@ class ImportCrunchbasePeopleCSVState:
 def import_people(
     ctx: DataFunctionContext, user_key: str, use_sample: bool = False,
 ):
+    """
+    Params:
+        user_key: User API key from crunchbase.
+        use_sample: Whether to use the sample bulk CSV endpoint (default False)
+    """
     base_import(
         data_source="people", user_key=user_key, ctx=ctx, use_sample=use_sample,
     )
